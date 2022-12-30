@@ -1,48 +1,48 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-import { Typography, ChmexUIContext, NavBar, Code, TextInput } from 'chmex-ui'
+import { Typography, ChmexUIContext, NavBar, Code, TextInput } from "chmex-ui";
 
-import Sun from './assets/sun.png'
-import Moon from './assets/moon.png'
-import ChmexUILogo from './assets/chmex-ui.svg'
+import Sun from "./assets/sun.png";
+import Moon from "./assets/moon.png";
+import ChmexUILogo from "./assets/chmex-ui.svg";
 
-import { getDocumentation, getSectionCategory } from './network/ApiAxios'
-import SideBarItem from './components/SideBarItem'
-import axios from 'axios'
-import Example from './components/Example'
+import { getDocumentation, getSectionCategory } from "./network/ApiAxios";
+import SideBarItem from "./components/SideBarItem";
+import axios from "axios";
+import Example from "./components/Example";
 
 const App = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true)
-  const [docs, setDocs] = useState([])
-  const [sectionCategories, setSectionCategories] = useState([])
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [docs, setDocs] = useState([]);
+  const [sectionCategories, setSectionCategories] = useState([]);
 
-  const [openSideBarCategory, setOpenSideBarCategory] = useState(null)
+  const [openSideBarCategory, setOpenSideBarCategory] = useState(null);
 
   const tryGetDocumentation = async () => {
     axios.all([getSectionCategory(), getDocumentation()]).then(
       axios.spread((dataSectionCategory, dataDocs) => {
         // console.log(dataSectionCategory.data, dataDocs.data)
-        setSectionCategories(dataSectionCategory.data.data)
-        setDocs(dataDocs.data.data)
+        setSectionCategories(dataSectionCategory.data.data);
+        setDocs(dataDocs.data.data);
       })
-    )
-  }
+    );
+  };
 
   useEffect(() => {
-    tryGetDocumentation()
-  }, [])
+    tryGetDocumentation();
+  }, []);
 
   function renderElement(blockItem) {
     if (blockItem.item.isExample) {
-      return <Example>{createElement(blockItem)}</Example>
+      return <Example>{createElement(blockItem)}</Example>;
     } else {
-      return createElement(blockItem)
+      return createElement(blockItem);
     }
   }
 
   function createElement(blockItem) {
     switch (blockItem.collection) {
-      case 'typography':
+      case "typography":
         return (
           <Typography
             key={blockItem.id}
@@ -52,9 +52,9 @@ const App = () => {
           >
             {blockItem.item.value}
           </Typography>
-        )
+        );
 
-      case 'code':
+      case "code":
         return (
           <Code
             key={blockItem.id}
@@ -62,9 +62,9 @@ const App = () => {
             value={blockItem.item.value}
             style={blockItem.item.style}
           />
-        )
+        );
 
-      case 'textinput':
+      case "textinput":
         return (
           <TextInput
             key={blockItem.id}
@@ -72,43 +72,43 @@ const App = () => {
             borderVariant={blockItem.item.borderVariant}
             containerStyle={blockItem.item.style}
           />
-        )
+        );
 
-      case 'multifield':
-        let elmts = []
+      case "multifield":
+        let elmts = [];
         blockItem.item.field.forEach((multifield) =>
           elmts.push(renderElement(multifield))
-        )
-        return elmts
+        );
+        return elmts;
 
       default:
-        break
+        break;
     }
   }
 
   return (
     <ChmexUIContext.Provider
       value={{
-        dark: isDarkMode
+        dark: isDarkMode,
       }}
     >
-      <div className={`page-container ${isDarkMode ? 'dark' : 'light'}`}>
-        <div className='sidebar'>
-          <div className='title'>
-            <img alt='Chmex UI Logo' src={ChmexUILogo} className='logo' />
-            <Typography kind='h4' style={{ marginBottom: 0 }}>
+      <div className={`page-container ${isDarkMode ? "dark" : "light"}`}>
+        <div className="sidebar">
+          <div className="title">
+            <img alt="Chmex UI Logo" src={ChmexUILogo} className="logo" />
+            <Typography kind="h4" style={{ marginBottom: 0 }}>
               Chmex UI
             </Typography>
           </div>
-          <div className='items'>
-            {sectionCategories?.map((sectionCategory) => (
+          <div className="items">
+            {sectionCategories.map((sectionCategory) => (
               <SideBarItem
                 isDarkMode={isDarkMode}
                 key={sectionCategory.id}
                 onClick={() => {
                   openSideBarCategory !== sectionCategory.id
                     ? setOpenSideBarCategory(sectionCategory.id)
-                    : setOpenSideBarCategory(null)
+                    : setOpenSideBarCategory(null);
                 }}
                 label={sectionCategory.title}
                 itemChildren={sectionCategory.sectionId}
@@ -117,7 +117,7 @@ const App = () => {
             ))}
           </div>
         </div>
-        <div className='documentation-wrapper'>
+        <div className="documentation-wrapper">
           <NavBar
             style={{ paddingInline: 64 }}
             leftChild={
@@ -125,18 +125,18 @@ const App = () => {
             }
             rightChild={
               <img
-                alt='dark-mode-toggle'
+                alt="dark-mode-toggle"
                 src={isDarkMode ? Sun : Moon}
-                className='mode-icon'
+                className="mode-icon"
                 onClick={() => {
-                  setIsDarkMode(!isDarkMode)
+                  setIsDarkMode(!isDarkMode);
                 }}
               />
             }
           />
-          <div className='documentation'>
-            {docs?.map((section) => (
-              <div id={section.title} className='section' key={section.id}>
+          <div className="documentation">
+            {docs.map((section) => (
+              <div id={section.title} className="section" key={section.id}>
                 {section.field.map((blockItem) => renderElement(blockItem))}
               </div>
             ))}
@@ -144,6 +144,6 @@ const App = () => {
         </div>
       </div>
     </ChmexUIContext.Provider>
-  )
-}
-export default App
+  );
+};
+export default App;
