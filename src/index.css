@@ -1,0 +1,93 @@
+html {
+  scroll-behavior: smooth;
+}
+
+:target:before {
+  content: '';
+  display: block;
+  height: 32px;
+  margin: -32px 0 0;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.dark .sidebar,
+.dark .documentation-wrapper {
+  background: black !important;
+}
+
+.dark .sidebar {
+  border-right: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+.light .sidebar,
+.light .documentation-wrapper {
+  background: white !important;
+}
+
+.light .sidebar {
+  border-right: 1px solid rgba(196, 196, 196, 0.8) !important;
+}
+
+.documentation-wrapper {
+  min-height: 100vh;
+  width: calc(100vw - 300px);
+  box-sizing: border-box;
+  position: absolute;
+  left: 300px;
+}
+
+.documentation {
+  padding: 64px;
+}
+
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+}
+
+.sidebar .title {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-inline: 32px;
+}
+
+.sidebar .logo {
+  height: 48px;
+  margin-right: 20px;
+}
+
+.light .sidebar .title {
+  border-bottom: 1px solid rgba(196, 196, 196, 0.8) !important;
+}
+
+.dark .sidebar .title {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.section {
+  padding-bottom: 32px;
+}
+
+.mode-icon {
+  width: 28px;
+  cursor: pointer;
+}
