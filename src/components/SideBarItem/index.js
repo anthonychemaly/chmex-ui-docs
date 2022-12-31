@@ -1,43 +1,45 @@
-import React from 'react'
-import { Typography } from 'chmex-ui'
+import React from "react";
+import { Typography } from "chmex-ui";
 
-import './styles.css'
+import "./styles.css";
 
-import chevronWhite from '../../assets/down-chevron.png'
-import chevronBlack from '../../assets/down-chevron-black.png'
+import chevronWhite from "../../assets/down-chevron.png";
+import chevronBlack from "../../assets/down-chevron-black.png";
 
 const SideBarItem = ({
   label,
   itemChildren = [],
   isOpen,
   onClick,
-  isDarkMode
+  onChooseCallback,
+  isDarkMode,
 }) => {
   return (
-    <div className='sidebar-item'>
-      <div className={'sidebar-link'} onClick={onClick}>
-        <div className={'wrapper'}>
-          <Typography kind='h6' style={{ margin: 0, fontSize: 15 }}>
+    <div className="sidebar-item">
+      <div className={"sidebar-link"} onClick={onClick}>
+        <div className={"wrapper"}>
+          <Typography kind="h6" style={{ margin: 0, fontSize: 15 }}>
             {label}
           </Typography>
           <img
-            alt='chevron'
+            alt="chevron"
             src={isDarkMode ? chevronWhite : chevronBlack}
-            className={`chevron ${isOpen && 'chevron-rotated'}`}
+            className={`chevron ${isOpen && "chevron-rotated"}`}
           />
         </div>
       </div>
-      <div className={`links ${isOpen ? 'links-show' : 'links-hidden'}`}>
+      <div className={`links ${isOpen ? "links-show" : "links-hidden"}`}>
         {itemChildren.map(({ section_id: link }) => (
           <div
             key={link.id}
-            className={'sidebar-link'}
+            className={"sidebar-link"}
             onClick={() => {
-              window.location.href = '/#' + link.title
+              window.location.href = "/#" + link.title;
+              onChooseCallback();
             }}
           >
-            <div className={'wrapper'}>
-              <Typography kind='h6' style={{ margin: 0, fontSize: 15 }}>
+            <div className={"wrapper"}>
+              <Typography kind="h6" style={{ margin: 0, fontSize: 15 }}>
                 {link.title}
               </Typography>
             </div>
@@ -45,7 +47,7 @@ const SideBarItem = ({
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SideBarItem
+export default SideBarItem;

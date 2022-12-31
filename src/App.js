@@ -110,7 +110,6 @@ const App = () => {
         >
           <div className="sidebar">
             <div className="title">
-              {/* <h1 style={{ color: "red" }} onClic>hi</h1> */}
               <img alt="Chmex UI Logo" src={ChmexUILogo} className="logo" />
               <Typography kind="h4" style={{ marginBottom: 0 }}>
                 Chmex UI
@@ -125,6 +124,9 @@ const App = () => {
                     openSideBarCategory !== sectionCategory.id
                       ? setOpenSideBarCategory(sectionCategory.id)
                       : setOpenSideBarCategory(null);
+                  }}
+                  onChooseCallback={() => {
+                    !isLarge && setSidebarOpen(false);
                   }}
                   label={sectionCategory.title}
                   itemChildren={sectionCategory.sectionId}
