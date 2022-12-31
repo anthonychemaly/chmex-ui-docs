@@ -5,18 +5,23 @@ import { Typography, ChmexUIContext, NavBar, Code, TextInput } from "chmex-ui";
 import Sun from "./assets/sun.png";
 import Moon from "./assets/moon.png";
 import ChmexUILogo from "./assets/chmex-ui.svg";
+import BurgerMenu from "./assets/burger.svg";
 
 import { getDocumentation, getSectionCategory } from "./network/ApiAxios";
 import SideBarItem from "./components/SideBarItem";
 import axios from "axios";
 import Example from "./components/Example";
+import useViewport from "./hooks/useViewport";
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [docs, setDocs] = useState([]);
   const [sectionCategories, setSectionCategories] = useState([]);
-
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openSideBarCategory, setOpenSideBarCategory] = useState(null);
+
+  const { width } = useViewport();
+  let isLarge = width > 767;
 
   const tryGetDocumentation = async () => {
     axios.all([getSectionCategory(), getDocumentation()]).then(
@@ -93,35 +98,61 @@ const App = () => {
       }}
     >
       <div className={`page-container ${isDarkMode ? "dark" : "light"}`}>
-        <div className="sidebar">
-          <div className="title">
-            <img alt="Chmex UI Logo" src={ChmexUILogo} className="logo" />
-            <Typography kind="h4" style={{ marginBottom: 0 }}>
-              Chmex UI
-            </Typography>
+        <div
+          className={`sidebar-wrapper ${
+            !isLarge
+              ? sidebarOpen
+                ? "sidebar-mb-open"
+                : "sidebar-mb-closed"
+              : ""
+          }`}
+        >
+          <div className="sidebar">
+            <div className="title">
+              {/* <h1 style={{ color: "red" }} onClic>hi</h1> */}
+              <img alt="Chmex UI Logo" src={ChmexUILogo} className="logo" />
+              <Typography kind="h4" style={{ marginBottom: 0 }}>
+                Chmex UI
+              </Typography>
+            </div>
+            <div className="items">
+              {sectionCategories.map((sectionCategory) => (
+                <SideBarItem
+                  isDarkMode={isDarkMode}
+                  key={sectionCategory.id}
+                  onClick={() => {
+                    openSideBarCategory !== sectionCategory.id
+                      ? setOpenSideBarCategory(sectionCategory.id)
+                      : setOpenSideBarCategory(null);
+                  }}
+                  label={sectionCategory.title}
+                  itemChildren={sectionCategory.sectionId}
+                  isOpen={openSideBarCategory === sectionCategory.id}
+                />
+              ))}
+            </div>
           </div>
-          <div className="items">
-            {sectionCategories.map((sectionCategory) => (
-              <SideBarItem
-                isDarkMode={isDarkMode}
-                key={sectionCategory.id}
-                onClick={() => {
-                  openSideBarCategory !== sectionCategory.id
-                    ? setOpenSideBarCategory(sectionCategory.id)
-                    : setOpenSideBarCategory(null);
-                }}
-                label={sectionCategory.title}
-                itemChildren={sectionCategory.sectionId}
-                isOpen={openSideBarCategory === sectionCategory.id}
-              />
-            ))}
-          </div>
+          <div
+            className="sidebar-empty"
+            onClick={() => {
+              !isLarge && sidebarOpen && setSidebarOpen(false);
+            }}
+          />
         </div>
         <div className="documentation-wrapper">
           <NavBar
             style={{ paddingInline: 64 }}
             leftChild={
-              <div>{/* <h1 style={{ color: 'white' }}>hi</h1> */}</div>
+              !isLarge && (
+                <img
+                  style={{ width: 24 }}
+                  onClick={() => {
+                    !isLarge && setSidebarOpen(true);
+                  }}
+                  alt="menu"
+                  src={BurgerMenu}
+                />
+              )
             }
             rightChild={
               <img
