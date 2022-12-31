@@ -71,6 +71,11 @@ h6 {
 .sidebar-empty {
   z-index: -1;
 }
+@media (max-width: 576px) {
+  .documentation {
+    padding: 32px;
+  }
+}
 
 @media (max-width: 767px) {
   .sidebar-wrapper {

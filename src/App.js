@@ -22,6 +22,7 @@ const App = () => {
 
   const { width } = useViewport();
   let isLarge = width > 767;
+  let isSmall = width < 577;
 
   const tryGetDocumentation = async () => {
     axios.all([getSectionCategory(), getDocumentation()]).then(
@@ -141,7 +142,7 @@ const App = () => {
         </div>
         <div className="documentation-wrapper">
           <NavBar
-            style={{ paddingInline: 64 }}
+            style={{ paddingInline: isSmall ? 32 : 64 }}
             leftChild={
               !isLarge && (
                 <img
