@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
-import { Typography, ChmexUIContext, NavBar, Code, TextInput } from 'chmex-ui'
+import {
+  Typography,
+  ChmexUIContext,
+  NavBar,
+  Code,
+  TextInput,
+  Table
+} from 'chmex-ui'
 
 import Sun from './assets/sun.png'
 import Moon from './assets/moon.png'
@@ -40,7 +47,11 @@ const App = () => {
 
   function renderElement(blockItem) {
     if (blockItem.item.isExample) {
-      return <Example>{createElement(blockItem)}</Example>
+      return (
+        <Example style={blockItem.item.style}>
+          {createElement(blockItem)}
+        </Example>
+      )
     } else {
       return createElement(blockItem)
     }
@@ -86,6 +97,25 @@ const App = () => {
           elmts.push(renderElement(multifield))
         )
         return elmts
+
+      case 'table':
+        let rowFields = ['name', 'type', 'default', 'description']
+        return (
+          <Table style={blockItem.item.style}>
+            <tr>
+              {rowFields.map((item) => (
+                <th>{item}</th>
+              ))}
+            </tr>
+            {blockItem.item.props.map((row) => (
+              <tr>
+                {rowFields.map((fieldType) => (
+                  <td>{row[fieldType]}</td>
+                ))}
+              </tr>
+            ))}
+          </Table>
+        )
 
       default:
         break
