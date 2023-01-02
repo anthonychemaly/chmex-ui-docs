@@ -6,7 +6,8 @@ import {
   NavBar,
   Code,
   TextInput,
-  Table
+  Table,
+  Button
 } from 'chmex-ui'
 
 import Sun from './assets/sun.png'
@@ -48,7 +49,10 @@ const App = () => {
   function renderElement(blockItem) {
     if (blockItem.item.isExample) {
       return (
-        <Example style={blockItem.item.style}>
+        <Example
+          style={blockItem.item.style}
+          wrapperStyle={blockItem.item.wrapperStyle}
+        >
           {createElement(blockItem)}
         </Example>
       )
@@ -90,6 +94,9 @@ const App = () => {
             containerStyle={blockItem.item.style}
           />
         )
+
+      case 'button':
+        return <Button key={blockItem.id} {...blockItem.item} />
 
       case 'multifield':
         let elmts = []

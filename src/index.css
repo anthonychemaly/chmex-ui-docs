@@ -5,8 +5,8 @@ html {
 :target:before {
   content: "";
   display: block;
-  height: 32px;
-  margin: -32px 0 0;
+  height: 102px;
+  margin: -102px 0 0;
 }
 
 body,
