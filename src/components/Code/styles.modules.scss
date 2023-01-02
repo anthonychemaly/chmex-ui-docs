@@ -1,0 +1,37 @@
+.pre {
+  border-radius: 16px;
+  background-color: #001e3c;
+  padding: 18px;
+  font-size: 16px;
+  position: relative;
+  z-index: 0;
+  border: 3px solid #001e3c;
+
+}
+
+.pre:hover {
+  border: 3px solid rgb(0, 127, 255);
+}
+
+.code {
+  color: white;
+  white-space: -moz-pre-wrap; /* Firefox */
+  white-space: -pre-wrap; /* ancient Opera */
+  white-space: -o-pre-wrap; /* newer Opera */
+  white-space: pre-wrap; /* Chrome; W3C standard */
+  word-wrap: break-word; /* IE */
+}
+
+.copy {
+  position: absolute;
+  background: #001e3c;
+  z-index: 1;
+  right: 12px;
+  top: 10px;
+  border: 2px solid rgb(0, 127, 255);
+  padding: 4px 16px;
+  color: white;
+  border-radius: 8px;
+  font-family: IBM Plex Sans;
+  cursor: pointer;
+}

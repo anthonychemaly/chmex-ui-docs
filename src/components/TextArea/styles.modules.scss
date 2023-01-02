@@ -1,0 +1,44 @@
+@import '../../styles.scss';
+
+.nt-text-area-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.nt-text-area-label {
+  font-family: IBM Plex Sans;
+  padding: 8px 4px;
+  font-size: 14px;
+}
+
+.nt-text-area-error {
+  font-family: IBM Plex Sans;
+  padding: 6px 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.nt-text-area {
+  font-family: IBM Plex Sans;
+  padding: 12px 10px;
+  border: 0px;
+  outline: none;
+  box-shadow: none;
+  font-size: 15px;
+}
+
+.standard {
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+}
+
+.outlined-rounded {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 8px;
+}
+
+.outlined {
+  border-width: 2px;
+  border-style: solid;
+}

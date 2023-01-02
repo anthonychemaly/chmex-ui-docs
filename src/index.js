@@ -1,8 +1,31 @@
-import './index.css'
-import 'chmex-ui/dist/index.css'
+import './styles.scss'
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
+import Button from './components/Button'
+import GradientButton from './components/GradientButton'
+import Typography from './components/Typography'
+import TextInput from './components/TextInput'
+import TextArea from './components/TextArea'
+import Select from './components/Select'
+import NavBar from './components/NavBar'
+import Code from './components/Code'
+import Table from './components/Table'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+import ChmexUIColors from './constants/colors'
+
+import ChmexUIContext from './ChmexUIContext.js'
+import { useChmexTheme } from './hooks/index'
+
+export {
+  Button,
+  GradientButton,
+  Typography,
+  TextInput,
+  TextArea,
+  Select,
+  Table,
+  NavBar,
+  Code,
+  ChmexUIContext,
+  ChmexUIColors,
+  useChmexTheme
+}

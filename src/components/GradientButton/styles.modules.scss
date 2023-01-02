@@ -1,0 +1,52 @@
+@import '../../styles.scss';
+
+.gradientButton {
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  border-bottom-color: transparent;
+  white-space: nowrap;
+  padding: 8px 0px;
+  cursor: pointer;
+}
+
+.gradientButtonText {
+  color: white;
+  font-size: 16px;
+  font-family: IBM Plex Sans;
+  background: conic-gradient(
+    from 180deg at 50% 51.52%,
+    rgba(0, 223, 150, 1) 0deg,
+    rgba(0, 207, 82, 1) 141.23deg,
+    rgba(25, 100, 106, 1) 360deg
+  );
+  -webkit-background-size: 200% 100%;
+  background-size: 200% 100%;
+  -webkit-animation: hue 6s infinite alternate;
+  animation: hue 6s infinite alternate;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes hue {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(-1turn);
+  }
+}
+@-webkit-keyframes hue {
+  0% {
+    -webkit-filter: hue-rotate(0deg);
+  }
+  100% {
+    -webkit-filter: hue-rotate(-1turn);
+  }
+}
