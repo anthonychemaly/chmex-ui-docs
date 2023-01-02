@@ -1,0 +1,142 @@
+html {
+  scroll-behavior: smooth;
+}
+
+:target:before {
+  content: "";
+  display: block;
+  height: 102px;
+  margin: -102px 0 0;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.dark .sidebar,
+.dark .documentation-wrapper {
+  background: black !important;
+}
+
+.dark .sidebar {
+  border-right: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+.light .sidebar,
+.light .documentation-wrapper {
+  background: white !important;
+}
+
+.light .sidebar {
+  border-right: 1px solid rgba(196, 196, 196, 0.8) !important;
+}
+
+.documentation-wrapper {
+  min-height: 100vh;
+  width: calc(100vw - 300px);
+  box-sizing: border-box;
+  position: absolute;
+  left: 300px;
+}
+
+.documentation {
+  padding: 64px;
+}
+
+.sidebar {
+  width: 299px;
+  min-height: 100vh;
+  height: 100%;
+  z-index: 1;
+}
+
+.sidebar-wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  /* background-color: red; */
+  /* z-index: 10; */
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+}
+
+.sidebar-empty {
+  z-index: -1;
+}
+@media (max-width: 576px) {
+  .documentation {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar-wrapper {
+    z-index: 10;
+  }
+
+  .sidebar-empty {
+    background-color: transparent;
+    width: calc(100vw - 300px);
+    min-height: 100vh;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .sidebar-mb-closed {
+    display: none;
+  }
+
+  .sidebar-mb-open {
+  }
+
+  .documentation-wrapper {
+    min-height: 100vh;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0px;
+    width: 100vw;
+  }
+}
+
+.sidebar .title {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-inline: 32px;
+}
+
+.sidebar .logo {
+  height: 48px;
+  margin-right: 20px;
+}
+
+.light .sidebar .title {
+  border-bottom: 1px solid rgba(196, 196, 196, 0.8) !important;
+}
+
+.dark .sidebar .title {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.section {
+  padding-bottom: 32px;
+}
+
+.mode-icon {
+  width: 28px;
+  cursor: pointer;
+}
